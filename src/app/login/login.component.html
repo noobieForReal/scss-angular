@@ -1,0 +1,43 @@
+<section>
+  <div class="page">
+    <div class="login-container">
+      <div class="login-icon-container">
+        <div class="login-icon">
+          <span>
+            <i class="fa fa-lock"></i>
+          </span>
+        </div>
+      </div>
+      <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm.form.valid)">
+        <div class="form-login">
+          <!--Form group username-->
+          <div class="form-group custom-form-group">
+            <label class="label-input">Username</label>
+            <input [(ngModel)]="user.userName" ngModel #userName="ngModel" type="text" id="userName" name="userName" required minlength="6"
+              (change)="log(userName)" class="form-control custom-form-input">
+            <!---Validation username-->
+            <div class="text-danger" *ngIf="!userName.valid" [hidden]="!errorMessage">
+              <div *ngIf="userName.errors.required">Username is required</div>
+              <div *ngIf="userName.errors.minlength">Username's length must be more than 6 characters</div>
+            </div>
+          </div>
+          <!--Form group password-->
+          <div class="form-group custom-form-group">
+            <label class="label-input">Password</label>
+            <input [(ngModel)]="user.passWord" type="password" id="passWord" name="passWord" required minlength="6" pattern="((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+              #passWord="ngModel" class="form-control custom-form-input">
+            <!---Validation password-->
+            <div class="text-danger" *ngIf="!passWord.valid" [hidden]="!errorMessage">
+              <div *ngIf="passWord.errors.required">Password is required</div>
+              <div *ngIf="passWord.errors.minlength">Password's length must be more than 6 characters</div>
+              <div *ngIf="passWord.errors.pattern">Password's must contain at least uppercase, lowercase, number and special characters</div>
+            </div>
+          </div>
+          <div class="form-group custom-form-group">
+            <input type="submit" id="submit" name="submit" class="btn btn-login" value="SIGN IN">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

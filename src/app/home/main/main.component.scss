@@ -1,0 +1,93 @@
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+.home-main-container {
+    .home-header {
+        padding: 15px 0;
+        display: flex;
+        .range-add {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 10px;
+        }
+        .icon-add {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            padding: 0 10px;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+        .btn-add {
+            border: none;
+            height: 100%;
+            padding: 0 10px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        .input-seach {
+            //width: 80%;
+            flex: 1;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+        .icon-seach {
+            @extend .icon-add;
+            border-radius: 3px;
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+    .home-table {
+        .range-table {
+            margin: 30px 0;
+            .btn-edit {
+                width: 100%;
+            }
+            .table {
+                background-color: white;
+                width: 97%;
+                margin: auto;
+                border: 1px solid rgb(120, 120, 120);
+                box-shadow: 0px 0px 4px rgb(200, 200, 200);
+                thead {
+                    background: #f7f4f7;
+                    background-image: linear-gradient(to bottom, #f7f4f7, #e6e3e6);
+                }
+            }
+        }
+        // Width for first column
+        th:nth-child(1), th:nth-child(5) {
+            width: 250px;
+        }
+        tbody {
+            tr {
+                td {
+                    .col-color-item {
+                        width: 40px;
+                        height: 40px;
+                        border-radius: 50%;
+                    }
+                }
+            }
+        }
+    }
+    .form-add-custom{
+        position: fixed;
+        left: 40%;
+        width: 20vw;
+        background-color: #ffffff;
+        padding: 10px;
+        @include border-radius(5px);
+        position: absolute;
+        .form-add-area{
+            margin-top: 15px;
+        }
+        .form-close-area{
+            text-align: right;
+        }
+    }
+}

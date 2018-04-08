@@ -1,0 +1,113 @@
+<section class="home-main-container">
+  <div class="home-header">
+    <div class="form-inline range-add col-4 col-md-8">
+      <div class="icon-add bg-dark text-white">
+        <i class="icon fa fa-plus"></i>
+      </div>
+      <!--Button show add form-->
+      <button type="button" class="btn btn-light btn-add" (click)="ShowAddForm()">ADD</button>
+    </div>
+    <!--Search bar-->
+    <div class="form-inline col-8 col-md-4 cell-flex">
+      <input type="text" class="form-control input-seach" [(ngModel)]="txtsearch">
+      <div class="icon-seach bg-dark text-white">
+        <i class="icon fa fa-search"></i>
+      </div>
+    </div>
+  </div>
+  <!--form add-->
+  <div class="form form-add-custom" *ngIf="isAdd">
+    <div class="form-close-area">
+      <button type="button" class="btn btn-light btn-close" (click)="CloseAddForm()">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+
+    <label class="label-input">Resource name:</label>
+    <input type="text" class="form-control" required [(ngModel)]="resourceName">
+
+    <label class="label-input">Resource type:</label>
+    <input type="text" class="form-control" required [(ngModel)]="resourceType">
+
+    <label class="label-input">Color:</label>
+    <input type="color" class="form-control" [(ngModel)]="colorHex">
+    <div class="text-danger" [hidden]="!isValidName">
+      <span>Resource name is required</span>
+    </div>
+    <div class="text-danger" [hidden]="!isValidType">
+      <span>Resource type is required</span>
+    </div>
+    <div class="button-save-area form-add-area center">
+      <button href="#" class="btn btn-save btn-classic" (click)="AddResource()">
+        <span class="fa fa-pencil"></span> Save
+      </button>
+    </div>
+
+  </div>
+  <!--Table resource-->
+  <div class="home-table">
+    <div class="range-table">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Resource Name</th>
+            <th>Resource Type Name</th>
+            <th class="center">Color</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let resource of arrResources">
+            <ng-container *ngIf="txtsearch==''|| (txtsearch!=='' && resource.resourceName.toLowerCase().includes(txtsearch)) || (txtsearch!=='' &&  resource.resourceType.toLowerCase().includes(txtsearch))">
+              <!--Display resource data-->
+              <td>
+                <div *ngIf="isEdit===resource.id || isDelete===resource.id" class="button-save-area center">
+                  <!--Button edit save-->
+                  <button *ngIf="isEdit===resource.id" href="#" class="btn btn-save btn-classic" (click)="SaveResource(resource.id)">
+                    <span class="fa fa-pencil"></span> Save
+                  </button>
+                  <!--Button delete confirm-->
+                  <button *ngIf="isDelete===resource.id" href="#" class="btn btn-save btn-classic" (click)="ConfirmDeleteResource(resource.id)">
+                    <span class="fa fa-pencil"></span> OK
+                  </button>
+                  <!--Button cancel-->
+                  <button href="#" class="btn btn-cancel btn-classic" (click)="Cancel(resource.id)">
+                    <span class="fa fa-pencil"></span> Cancel
+                  </button>
+                </div>
+                <div *ngIf="isEdit===-1 && isDelete===-1" class="button-edit-area center">
+                  <button href="#" class="btn btn-edit btn-classic" (click)="EditResource(resource.id)">
+                    <span class="fa fa-pencil"></span> Edit
+                  </button>
+                </div>
+              </td>
+              <!--Editable resource data area-->
+              <td *ngIf="isEdit===resource.id">
+                <input type="text" class="form-control" [(ngModel)]="resource.resourceName">
+              </td>
+              <td *ngIf="isEdit!==resource.id">{{resource.resourceName}}</td>
+
+              <td *ngIf="isEdit===resource.id">
+                <input type="text" class="form-control" [(ngModel)]="resource.resourceType">
+              </td>
+              <td *ngIf="isEdit!==resource.id">{{resource.resourceType}}</td>
+
+              <td class="center">
+                <div class="col-color-item" [ngStyle]="{'background-color': resource.colorHex }"></div>
+              </td>
+              <td class="center">
+                <div *ngIf="isEdit===-1 && isDelete===-1" class="button-delete-area">
+                  <button href="#" class="btn btn-classic" (click)="DeleteResource(resource.id)">
+                    <span class="fa fa fa-times"></span> Delete
+                  </button>
+                </div>
+                <input *ngIf="isEdit===resource.id" type="color" [(ngModel)]="resource.colorHex" value="{{resource.colorHex}}">
+              </td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

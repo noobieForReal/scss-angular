@@ -1,0 +1,31 @@
+<header>
+  <div class="header-inner">
+    <div class="header-logo">
+      <span class="header-slogan">your logo here</span>
+    </div>
+    <div class="header-circle circle-base"></div>
+    <nav role="navigation">
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="./">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="./about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="./contact">Contact</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<!--Change content-->
+<main>
+  <router-outlet></router-outlet>
+</main>
+<footer>
+  <span class="footer-text"> 
+    &copy;
+    2013 - My KendoUI ASP.NET MVC Application
+  </span>
+</footer>

@@ -1,0 +1,120 @@
+$main-login-color:rgb(48, 184, 206);
+$login-icon-background: rgb(246, 96, 136);
+$gray-border: rgb(233, 233, 233);
+$border-radius-form: 3px;
+@mixin btn-text {
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 600;
+}
+
+@mixin input-text-focus {
+    color: $main-login-color;
+}
+
+@mixin no-glow-input {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin transform-style($transform) {
+    -webkit-transform: $transform;
+    -moz-transform: $transform;
+    -ms-transform: $transform;
+    transform: $transform;
+}
+
+%circle {
+    border-radius: 50%;
+    display: inline-block;
+}
+
+%custom-input-no-border {
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 2px solid $gray-border;
+    @include border-radius(0);
+}
+
+body {
+    margin: 0;
+    font-size: 14px;
+}
+
+.page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: $main-login-color;
+}
+
+.login-container {
+    width: 80vw;
+    padding: 10px;
+    background-color: #fff;
+    @include border-radius(3px);
+    @media screen and (min-width: 1200px){
+        width: 30vw;
+    }
+    @media screen and (min-width: 1800px) {
+        width: 20vw;
+    }
+}
+
+.form-login {
+    @media screen and (min-width: 1200px) and (min-width: 1800px){
+        margin: 3rem 0 0 0;
+    }
+    .form-control.custom-form-input {
+        @media screen and (min-width: 1200px) and (min-width: 1800px) {
+            margin-bottom: 2rem;
+        }
+        @extend %custom-input-no-border;
+        transition: 0.3s;
+        &:focus {
+            @include no-glow-input();
+            border-bottom: 2px solid $main-login-color;
+        }
+    }
+}
+
+.login-icon-container {
+    text-align: center;
+    .login-icon {
+        @extend %circle;
+        width: 70px;
+        height: 70px;
+        background-color: $login-icon-background;
+        text-align: center;
+        padding: 1.2rem 1rem;
+    }
+}
+
+.custom-form-group {
+    &:focus-within .label-input {
+        transition: 0.3s;
+        @include input-text-focus();
+    }
+}
+
+.btn.btn-login {
+    @include btn-text();
+    background-color: $main-login-color;
+    width: 100%;
+    border-radius: .15rem;
+}
+
+.fa-lock::before {
+    color: #fff;
+    font-size: 2em;
+}

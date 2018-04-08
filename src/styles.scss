@@ -1,1 +1,83 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    margin: 0;
+    font-family: "Helvetica", "Arial", "Time News Roman";
+    font-size: 14px;
+    font-weight: 400;
+}
+
+$base-link-color: rgb(153, 153, 153);
+a {
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+nav {
+    a {
+        color: $base-link-color;
+        font-size: 1.5em;
+        font-weight: 600;
+        &:hover {
+            color: darken($base-link-color, 20%);
+        }
+    }
+}
+
+.circle-base {
+    border-radius: 50%;
+}
+
+@mixin btn-classic($background-color) {
+    $bottom-color: darken($background-color, 10%);
+    background: $background-color;
+    border: solid $bottom-color 1px;
+    background-image: -webkit-linear-gradient(to bottom, $background-color, $bottom-color);
+    background-image: -moz-linear-gradient(to bottom, $background-color, $bottom-color);
+    background-image: -o-linear-gradient(to bottom, $background-color, $bottom-color);
+    background-image: linear-gradient(to bottom, $background-color, $bottom-color);
+}
+
+.btn {
+  &.btn-classic{
+    $background-color: #e4e4e4;
+    @include btn-classic($background-color);
+  }
+  &.btn-save, &.btn-cancel{
+    color: #ffffff;
+  }
+  &.btn-save{
+    $background-color: #8c9fff;
+    @include btn-classic($background-color);
+  }
+  &.btn-cancel{
+    $background-color: #f81414;
+    @include btn-classic($background-color);
+  }
+  &.btn-close{
+    $background-color: #f81414;
+    @include btn-classic($background-color);
+    i{
+        color: #ffffff;
+    }
+  }
+}
+
+.center {
+    text-align: center !important;
+    div {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.title{
+    font-size: 1.625em;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+}
+
+textarea{
+    resize: none;
+}
